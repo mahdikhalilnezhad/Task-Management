@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace Task_Management
 {
-    public partial class Form1 : Form
+    public partial class Main_Page : Form
     {
-        public Form1()
+        public Main_Page()
         {
             InitializeComponent();
+        }
+
+        private void Main_Page_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
