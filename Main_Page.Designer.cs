@@ -32,7 +32,7 @@
             this.btn_add_task = new System.Windows.Forms.Button();
             this.btn_report = new System.Windows.Forms.Button();
             this.btn_today_task = new System.Windows.Forms.Button();
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.lv_task_list_viwe = new System.Windows.Forms.ListView();
             this.SuspendLayout();
             // 
             // btn_all_task
@@ -43,6 +43,7 @@
             this.btn_all_task.TabIndex = 0;
             this.btn_all_task.Text = "All Task";
             this.btn_all_task.UseVisualStyleBackColor = true;
+            this.btn_all_task.Click += new System.EventHandler(this.btn_all_task_Click);
             // 
             // btn_add_task
             // 
@@ -71,21 +72,22 @@
             this.btn_today_task.Text = "Today Task";
             this.btn_today_task.UseVisualStyleBackColor = true;
             // 
-            // listView1
+            // lv_task_list_viwe
             // 
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(93, 12);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(257, 413);
-            this.listView1.TabIndex = 4;
-            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.lv_task_list_viwe.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lv_task_list_viwe.HideSelection = false;
+            this.lv_task_list_viwe.Location = new System.Drawing.Point(93, 12);
+            this.lv_task_list_viwe.Name = "lv_task_list_viwe";
+            this.lv_task_list_viwe.Size = new System.Drawing.Size(257, 413);
+            this.lv_task_list_viwe.TabIndex = 4;
+            this.lv_task_list_viwe.UseCompatibleStateImageBehavior = false;
             // 
             // Main_Page
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(362, 437);
-            this.Controls.Add(this.listView1);
+            this.Controls.Add(this.lv_task_list_viwe);
             this.Controls.Add(this.btn_today_task);
             this.Controls.Add(this.btn_report);
             this.Controls.Add(this.btn_add_task);
@@ -103,7 +105,7 @@
         private System.Windows.Forms.Button btn_add_task;
         private System.Windows.Forms.Button btn_report;
         private System.Windows.Forms.Button btn_today_task;
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ListView lv_task_list_viwe;
     }
 }
 

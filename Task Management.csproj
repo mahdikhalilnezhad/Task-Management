@@ -63,6 +63,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Add_Task.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Add_Task.Designer.cs">
+      <DependentUpon>Add_Task.cs</DependentUpon>
+    </Compile>
     <Compile Include="Main_Page.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -71,6 +77,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Add_Task.resx">
+      <DependentUpon>Add_Task.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Main_Page.resx">
       <DependentUpon>Main_Page.cs</DependentUpon>
     </EmbeddedResource>

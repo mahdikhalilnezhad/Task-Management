@@ -142,6 +142,30 @@ namespace Task_Management
 
             // Similar methods can be added for adding, updating, and deleting categories, reminders, and notes
         }
+
+        private void btn_all_task_Click(object sender, EventArgs e)
+        {
+            //conn = new SqlConnection("Data Source=(local);Initial Catalog=TaskDB;Integrated Security=True");
+            //conn.Open();
+
+            SqlCommand command = new SqlCommand("SELECT * FROM dbo.Tasks", conn);
+            SqlDataAdapter adapter = new SqlDataAdapter(command);
+            DataTable taskData = new DataTable();
+            adapter.Fill(taskData);
+
+            // You can use a DataGridView or a ListView to display the task data
+            lv_task_list_viwe.Items.Clear();
+            foreach (DataRow row in taskData.Rows)
+            {
+                ListViewItem item = new ListViewItem(row["TaskName"].ToString());
+                item.SubItems.Add(row["DueDate"].ToString());
+                item.SubItems.Add(row["Priority"].ToString());
+                item.SubItems.Add(row["Status"].ToString());
+                lv_task_list_viwe.Items.Add(item);
+            }
+
+            //conn.Close();
+        }
     }
 
 
