@@ -7,11 +7,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
 namespace Task_Management
 {
     public partial class Main_Page : Form
     {
+        SqlDataAdapter ad = new SqlDataAdapter();
+        SqlCommand cmd = new SqlCommand();
+        SqlConnection conn = new SqlConnection();
+        DataSet ds = new DataSet();
+
+
+
         public Main_Page()
         {
             InitializeComponent();
@@ -19,7 +27,127 @@ namespace Task_Management
 
         private void Main_Page_Load(object sender, EventArgs e)
         {
+            conn.ConnectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;" +
+                "AttachDbFilename=\"C:\\Users\\Mahdi Khalil Nejad\\source\\repos\\Task Management\\TM Database.mdf\";" +
+                "Integrated Security=True";
+            conn.Open();
+        }
 
+
+
+
+
+
+        //This code writed with OpenAI
+        public class Task
+        {
+            public int TaskId { get; set; }
+            public string Title { get; set; }
+            public string Description { get; set; }
+            public DateTime DueDate { get; set; }
+            public int CategoryId { get; set; }
+
+            public Task()
+            {
+            }
+
+            public Task(int taskId, string title, string description, DateTime dueDate, int categoryId)
+            {
+                TaskId = taskId;
+                Title = title;
+                Description = description;
+                DueDate = dueDate;
+                CategoryId = categoryId;
+            }
+        }
+
+        public class Category
+        {
+            public int CategoryId { get; set; }
+            public string CategoryName { get; set; }
+
+            public Category()
+            {
+            }
+
+            public Category(int categoryId, string categoryName)
+            {
+                CategoryId = categoryId;
+                CategoryName = categoryName;
+            }
+        }
+
+        public class Reminder
+        {
+            public int ReminderId { get; set; }
+            public int TaskId { get; set; }
+            public DateTime ReminderDate { get; set; }
+
+            public Reminder()
+            {
+            }
+
+            public Reminder(int reminderId, int taskId, DateTime reminderDate)
+            {
+                ReminderId = reminderId;
+                TaskId = taskId;
+                ReminderDate = reminderDate;
+            }
+        }
+
+        public class Note
+        {
+            public int NoteId { get; set; }
+            public int TaskId { get; set; }
+            public string Content { get; set; }
+
+            public Note()
+            {
+            }
+
+            public Note(int noteId, int taskId, string content)
+            {
+                NoteId = noteId;
+                TaskId = taskId;
+                Content = content;
+            }
+        }
+
+        public class Database
+        {
+            private readonly string _connectionString;
+
+            public Database(string connectionString)
+            {
+                _connectionString = connectionString;
+            }
+
+            public void AddTask(Task task)
+            {
+                using (var connection = new SqlConnection(_connectionString))
+                {
+                    connection.Open();
+
+                    using (var command = new SqlCommand("INSERT INTO dbo.Tasks (Title, Description, DueDate, CategoryId) VALUES (@Title, @Description, @DueDate, @CategoryId)", connection))
+                    {
+                        command.Parameters.AddWithValue("@Title", task.Title);
+                        command.Parameters.AddWithValue("@Description", task.Description);
+                        command.Parameters.AddWithValue("@DueDate", task.DueDate);
+                        command.Parameters.AddWithValue("@CategoryId", task.CategoryId);
+
+                        command.ExecuteNonQuery();
+                    }
+                }
+            }
+
+            // Similar methods can be added for adding, updating, and deleting categories, reminders, and notes
         }
     }
+
+
+
+
+
+
 }
+
