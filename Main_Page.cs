@@ -166,12 +166,16 @@ namespace Task_Management
 
             //conn.Close();
         }
+
+        private void btn_add_task_Click(object sender, EventArgs e)
+        {
+
+           
+            // Show a new form for adding a task
+            f_add_task addTaskForm = new f_add_task();
+            addTaskForm.Show();
+        }
     }
-
-
-
-
-
-
 }
+
 

@@ -53,6 +53,7 @@
             this.btn_add_task.TabIndex = 1;
             this.btn_add_task.Text = "Add Task";
             this.btn_add_task.UseVisualStyleBackColor = true;
+            this.btn_add_task.Click += new System.EventHandler(this.btn_add_task_Click);
             // 
             // btn_report
             // 
