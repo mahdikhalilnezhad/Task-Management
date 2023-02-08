@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Xml.Linq;
 
 namespace Task_Management
 {
@@ -145,35 +146,26 @@ namespace Task_Management
 
         private void btn_all_task_Click(object sender, EventArgs e)
         {
-            //conn = new SqlConnection("Data Source=(local);Initial Catalog=TaskDB;Integrated Security=True");
-            //conn.Open();
-
-            SqlCommand command = new SqlCommand("SELECT * FROM dbo.Tasks", conn);
-            SqlDataAdapter adapter = new SqlDataAdapter(command);
-            DataTable taskData = new DataTable();
-            adapter.Fill(taskData);
-
-            // You can use a DataGridView or a ListView to display the task data
-            lv_task_list_viwe.Items.Clear();
-            foreach (DataRow row in taskData.Rows)
-            {
-                ListViewItem item = new ListViewItem(row["TaskName"].ToString());
-                item.SubItems.Add(row["DueDate"].ToString());
-                item.SubItems.Add(row["Priority"].ToString());
-                item.SubItems.Add(row["Status"].ToString());
-                lv_task_list_viwe.Items.Add(item);
-            }
-
-            //conn.Close();
+            fillgrid();
         }
 
         private void btn_add_task_Click(object sender, EventArgs e)
         {
-
-           
             // Show a new form for adding a task
             f_add_task addTaskForm = new f_add_task();
             addTaskForm.Show();
+        }
+
+        void fillgrid(string s = "Select * from dbo.tasks")
+        {
+
+            cmd.CommandText = s;
+            cmd.Connection = conn;
+            ad.SelectCommand = cmd;
+            ds.Clear();
+            ad.Fill(ds, "T1");
+            dataGridView_mainPage.DataBindings.Clear();
+            dataGridView_mainPage.DataBindings.Add("datasource", ds, "T1");
         }
     }
 }

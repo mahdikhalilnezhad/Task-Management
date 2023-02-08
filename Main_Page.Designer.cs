@@ -32,7 +32,8 @@
             this.btn_add_task = new System.Windows.Forms.Button();
             this.btn_report = new System.Windows.Forms.Button();
             this.btn_today_task = new System.Windows.Forms.Button();
-            this.lv_task_list_viwe = new System.Windows.Forms.ListView();
+            this.dataGridView_mainPage = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_mainPage)).BeginInit();
             this.SuspendLayout();
             // 
             // btn_all_task
@@ -73,22 +74,24 @@
             this.btn_today_task.Text = "Today Task";
             this.btn_today_task.UseVisualStyleBackColor = true;
             // 
-            // lv_task_list_viwe
+            // dataGridView_mainPage
             // 
-            this.lv_task_list_viwe.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.lv_task_list_viwe.HideSelection = false;
-            this.lv_task_list_viwe.Location = new System.Drawing.Point(93, 12);
-            this.lv_task_list_viwe.Name = "lv_task_list_viwe";
-            this.lv_task_list_viwe.Size = new System.Drawing.Size(257, 413);
-            this.lv_task_list_viwe.TabIndex = 4;
-            this.lv_task_list_viwe.UseCompatibleStateImageBehavior = false;
+            this.dataGridView_mainPage.AllowUserToAddRows = false;
+            this.dataGridView_mainPage.AllowUserToDeleteRows = false;
+            this.dataGridView_mainPage.AllowUserToOrderColumns = true;
+            this.dataGridView_mainPage.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView_mainPage.Location = new System.Drawing.Point(93, 12);
+            this.dataGridView_mainPage.Name = "dataGridView_mainPage";
+            this.dataGridView_mainPage.ReadOnly = true;
+            this.dataGridView_mainPage.Size = new System.Drawing.Size(859, 413);
+            this.dataGridView_mainPage.TabIndex = 4;
             // 
             // Main_Page
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(362, 437);
-            this.Controls.Add(this.lv_task_list_viwe);
+            this.ClientSize = new System.Drawing.Size(964, 437);
+            this.Controls.Add(this.dataGridView_mainPage);
             this.Controls.Add(this.btn_today_task);
             this.Controls.Add(this.btn_report);
             this.Controls.Add(this.btn_add_task);
@@ -96,6 +99,7 @@
             this.Name = "Main_Page";
             this.Text = "Task Management";
             this.Load += new System.EventHandler(this.Main_Page_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_mainPage)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -106,7 +110,7 @@
         private System.Windows.Forms.Button btn_add_task;
         private System.Windows.Forms.Button btn_report;
         private System.Windows.Forms.Button btn_today_task;
-        private System.Windows.Forms.ListView lv_task_list_viwe;
+        private System.Windows.Forms.DataGridView dataGridView_mainPage;
     }
 }
 
