@@ -73,6 +73,7 @@
             this.btn_today_task.TabIndex = 3;
             this.btn_today_task.Text = "Today Task";
             this.btn_today_task.UseVisualStyleBackColor = true;
+            this.btn_today_task.Click += new System.EventHandler(this.btn_today_task_Click);
             // 
             // dataGridView_mainPage
             // 
@@ -83,19 +84,20 @@
             this.dataGridView_mainPage.Location = new System.Drawing.Point(93, 12);
             this.dataGridView_mainPage.Name = "dataGridView_mainPage";
             this.dataGridView_mainPage.ReadOnly = true;
-            this.dataGridView_mainPage.Size = new System.Drawing.Size(859, 413);
+            this.dataGridView_mainPage.Size = new System.Drawing.Size(670, 413);
             this.dataGridView_mainPage.TabIndex = 4;
             // 
             // Main_Page
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(964, 437);
+            this.ClientSize = new System.Drawing.Size(773, 437);
             this.Controls.Add(this.dataGridView_mainPage);
             this.Controls.Add(this.btn_today_task);
             this.Controls.Add(this.btn_report);
             this.Controls.Add(this.btn_add_task);
             this.Controls.Add(this.btn_all_task);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Main_Page";
             this.Text = "Task Management";
             this.Load += new System.EventHandler(this.Main_Page_Load);

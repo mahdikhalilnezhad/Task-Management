@@ -42,23 +42,27 @@ namespace Task_Management
         //This code writed with OpenAI
         public class Task
         {
-            public int TaskId { get; set; }
-            public string Title { get; set; }
-            public string Description { get; set; }
-            public DateTime DueDate { get; set; }
-            public int CategoryId { get; set; }
+            public int _TaskId { get; set; }
+            public string _TaskName { get; set; }
+            public string _Description { get; set; }
+            public DateTime _DueDate { get; set; }
+            public int _CategoryId { get; set; }
+            public int _PriorityId { get; set; }
 
             public Task()
             {
             }
 
-            public Task(int taskId, string title, string description, DateTime dueDate, int categoryId)
+            public Task(int taskId, string TaskName,
+                        string description, DateTime dueDate, 
+                        int categoryId, int priorityId)
             {
-                TaskId = taskId;
-                Title = title;
-                Description = description;
-                DueDate = dueDate;
-                CategoryId = categoryId;
+                _TaskId = taskId;
+                _TaskName = TaskName;
+                _Description = description;
+                _DueDate = dueDate;
+                _CategoryId = categoryId;
+                _PriorityId = priorityId;
             }
         }
 
@@ -83,7 +87,7 @@ namespace Task_Management
             public int ReminderId { get; set; }
             public int TaskId { get; set; }
             public DateTime ReminderDate { get; set; }
-
+            
             public Reminder()
             {
             }
@@ -123,25 +127,6 @@ namespace Task_Management
                 _connectionString = connectionString;
             }
 
-            public void AddTask(Task task)
-            {
-                using (var connection = new SqlConnection(_connectionString))
-                {
-                    connection.Open();
-
-                    using (var command = new SqlCommand("INSERT INTO dbo.Tasks (Title, Description, DueDate, CategoryId) VALUES (@Title, @Description, @DueDate, @CategoryId)", connection))
-                    {
-                        command.Parameters.AddWithValue("@Title", task.Title);
-                        command.Parameters.AddWithValue("@Description", task.Description);
-                        command.Parameters.AddWithValue("@DueDate", task.DueDate);
-                        command.Parameters.AddWithValue("@CategoryId", task.CategoryId);
-
-                        command.ExecuteNonQuery();
-                    }
-                }
-            }
-
-            // Similar methods can be added for adding, updating, and deleting categories, reminders, and notes
         }
 
         private void btn_all_task_Click(object sender, EventArgs e)
@@ -156,7 +141,7 @@ namespace Task_Management
             addTaskForm.Show();
         }
 
-        void fillgrid(string s = "Select * from dbo.tasks")
+        void fillgrid(string s = "exec GetAllTasks")
         {
 
             cmd.CommandText = s;
@@ -166,6 +151,29 @@ namespace Task_Management
             ad.Fill(ds, "T1");
             dataGridView_mainPage.DataBindings.Clear();
             dataGridView_mainPage.DataBindings.Add("datasource", ds, "T1");
+        }
+
+        private void btn_today_task_Click(object sender, EventArgs e)
+        {
+            //string connectionString = "Data Source=(local);Initial Catalog=TaskManagement;Integrated Security=True";
+            //using (SqlConnection connection = new SqlConnection(connectionString))
+            //{
+            //    connection.Open();
+            //    string today = DateTime.Today.ToString("yyyy-MM-dd");
+            //    string query = "SELECT TaskID, TaskName, StartDate, EndDate, CategoryID, Priority FROM Tasks WHERE StartDate = @today";
+            //    using (SqlCommand command = new SqlCommand(query, connection))
+            //    {
+            //        command.Parameters.AddWithValue("@today", today);
+            //        using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+            //        {
+            //            DataTable dataTable = new DataTable();
+            //            adapter.Fill(dataTable);
+            //            taskDataGridView.DataSource = dataTable;
+            //        }
+            //    }
+            //}
+            fillgrid("exec GetTodaysTasks");
+
         }
     }
 }

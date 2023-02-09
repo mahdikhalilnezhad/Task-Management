@@ -32,7 +32,6 @@
             this.btn_cancel = new System.Windows.Forms.Button();
             this.txt_task_name = new System.Windows.Forms.TextBox();
             this.txt_description = new System.Windows.Forms.TextBox();
-            this.txt_due_date = new System.Windows.Forms.TextBox();
             this.lbl_task_name = new System.Windows.Forms.Label();
             this.lbl_task_description = new System.Windows.Forms.Label();
             this.lbl_due_date = new System.Windows.Forms.Label();
@@ -40,6 +39,7 @@
             this.lbl_category = new System.Windows.Forms.Label();
             this.cmb_priority = new System.Windows.Forms.ComboBox();
             this.cmb_category = new System.Windows.Forms.ComboBox();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.SuspendLayout();
             // 
             // btn_submit
@@ -75,13 +75,6 @@
             this.txt_description.Name = "txt_description";
             this.txt_description.Size = new System.Drawing.Size(213, 20);
             this.txt_description.TabIndex = 3;
-            // 
-            // txt_due_date
-            // 
-            this.txt_due_date.Location = new System.Drawing.Point(189, 64);
-            this.txt_due_date.Name = "txt_due_date";
-            this.txt_due_date.Size = new System.Drawing.Size(213, 20);
-            this.txt_due_date.TabIndex = 4;
             // 
             // lbl_task_name
             // 
@@ -144,11 +137,19 @@
             this.cmb_category.Size = new System.Drawing.Size(213, 21);
             this.cmb_category.TabIndex = 13;
             // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Location = new System.Drawing.Point(189, 64);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(213, 20);
+            this.dateTimePicker1.TabIndex = 14;
+            // 
             // f_add_task
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(414, 239);
+            this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.cmb_category);
             this.Controls.Add(this.cmb_priority);
             this.Controls.Add(this.lbl_category);
@@ -156,14 +157,15 @@
             this.Controls.Add(this.lbl_due_date);
             this.Controls.Add(this.lbl_task_description);
             this.Controls.Add(this.lbl_task_name);
-            this.Controls.Add(this.txt_due_date);
             this.Controls.Add(this.txt_description);
             this.Controls.Add(this.txt_task_name);
             this.Controls.Add(this.btn_cancel);
             this.Controls.Add(this.btn_submit);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "f_add_task";
             this.Text = "Add Task";
             this.Load += new System.EventHandler(this.f_add_task_Load);
+            this.Enter += new System.EventHandler(this.btn_submit_Click);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -175,7 +177,6 @@
         private System.Windows.Forms.Button btn_cancel;
         private System.Windows.Forms.TextBox txt_task_name;
         private System.Windows.Forms.TextBox txt_description;
-        private System.Windows.Forms.TextBox txt_due_date;
         private System.Windows.Forms.Label lbl_task_name;
         private System.Windows.Forms.Label lbl_task_description;
         private System.Windows.Forms.Label lbl_due_date;
@@ -183,5 +184,6 @@
         private System.Windows.Forms.Label lbl_category;
         private System.Windows.Forms.ComboBox cmb_priority;
         private System.Windows.Forms.ComboBox cmb_category;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
     }
 }
