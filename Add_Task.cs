@@ -83,7 +83,9 @@ namespace Task_Management
 
             if (string.IsNullOrEmpty(txt_task_name.Text) ||
                 string.IsNullOrEmpty(txt_description.Text) ||
-                string.IsNullOrEmpty(dateTimePicker1.Text)
+                string.IsNullOrEmpty(dateTimePicker1.Text) ||
+                string.IsNullOrEmpty(cmb_category.Text) ||
+                string.IsNullOrEmpty(cmb_priority.Text)
                 )
             {
                 MessageBox.Show("Please fill in all required fields!",
@@ -93,17 +95,21 @@ namespace Task_Management
 
             using (SqlCommand command = 
                 new SqlCommand("exec InsertTask" +
-                " @TaskName, @TaskDescription, @TaskDueDate, @TaskPriority, @CategoryID", conn))
+                " @TaskName, @TaskDescription, @TaskDueDate, @PriorityID, @CategoryID", conn))
             {
                 command.Parameters.AddWithValue("@TaskName", txt_task_name.Text);
                 command.Parameters.AddWithValue("@TaskDescription", txt_description.Text);
                 command.Parameters.AddWithValue("@TaskDueDate", dateTimePicker1.Value.Date);
-                command.Parameters.AddWithValue("@TaskPriority", priority);
+                command.Parameters.AddWithValue("@PriorityID", priority);
                 command.Parameters.AddWithValue("@CategoryID", category);
-                //command.Parameters.AddWithValue("@InsertDate", DateTime.Now); //handle with store procedure
-
                 command.ExecuteNonQuery();
-            }; 
+            };
+            using (SqlCommand command =
+                new SqlCommand ("exec InsertNote @NoteText", conn))
+            {
+                command.Parameters.AddWithValue("@NoteText", txtNote.Text);
+                command.ExecuteNonQuery ();
+            }
             this.Close();
         }
 

@@ -40,11 +40,13 @@
             this.cmb_priority = new System.Windows.Forms.ComboBox();
             this.cmb_category = new System.Windows.Forms.ComboBox();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.txtNote = new System.Windows.Forms.TextBox();
+            this.lblNote = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btn_submit
             // 
-            this.btn_submit.Location = new System.Drawing.Point(324, 204);
+            this.btn_submit.Location = new System.Drawing.Point(329, 233);
             this.btn_submit.Name = "btn_submit";
             this.btn_submit.Size = new System.Drawing.Size(75, 23);
             this.btn_submit.TabIndex = 0;
@@ -54,7 +56,7 @@
             // 
             // btn_cancel
             // 
-            this.btn_cancel.Location = new System.Drawing.Point(243, 204);
+            this.btn_cancel.Location = new System.Drawing.Point(248, 233);
             this.btn_cancel.Name = "btn_cancel";
             this.btn_cancel.Size = new System.Drawing.Size(75, 23);
             this.btn_cancel.TabIndex = 1;
@@ -144,11 +146,30 @@
             this.dateTimePicker1.Size = new System.Drawing.Size(213, 20);
             this.dateTimePicker1.TabIndex = 14;
             // 
+            // txtNote
+            // 
+            this.txtNote.Location = new System.Drawing.Point(189, 144);
+            this.txtNote.Multiline = true;
+            this.txtNote.Name = "txtNote";
+            this.txtNote.Size = new System.Drawing.Size(213, 83);
+            this.txtNote.TabIndex = 15;
+            // 
+            // lblNote
+            // 
+            this.lblNote.AutoSize = true;
+            this.lblNote.Location = new System.Drawing.Point(12, 147);
+            this.lblNote.Name = "lblNote";
+            this.lblNote.Size = new System.Drawing.Size(30, 13);
+            this.lblNote.TabIndex = 16;
+            this.lblNote.Text = "Note";
+            // 
             // f_add_task
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(414, 239);
+            this.ClientSize = new System.Drawing.Size(416, 270);
+            this.Controls.Add(this.lblNote);
+            this.Controls.Add(this.txtNote);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.cmb_category);
             this.Controls.Add(this.cmb_priority);
@@ -185,5 +206,7 @@
         private System.Windows.Forms.ComboBox cmb_priority;
         private System.Windows.Forms.ComboBox cmb_category;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.TextBox txtNote;
+        private System.Windows.Forms.Label lblNote;
     }
 }

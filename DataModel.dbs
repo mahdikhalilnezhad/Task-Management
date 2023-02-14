@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="Task Management" id="Project-1552" database="LogicalDesign" >
+	<schema name="INSTANCE" catalogname="Task Management" >
+		<table name="Categories" prior="Categor" >
+			<column name="CategoryID" type="INT" jt="4" mandatory="y" />
+			<column name="categoryName" type="VARCHAR" length="100" jt="12" />
+			<fk name="fk_categories_tasks" virtual="y" to_schema="Task Management.INSTANCE" to_table="Tasks" type="NonIdentifying" mandatory="y" cardinality="OneMore" range_from="0" range_to="0" >
+				<fk_column name="CategoryID" pk="CategoryID" />
+			</fk>
+		</table>
+		<table name="Note" prior="entity" >
+			<column name="NoteID" type="INT" length="600" jt="4" mandatory="y" />
+			<column name="taskID" type="INT" jt="4" mandatory="y" />
+			<column name="NoteText" type="VARCHAR" length="250" jt="12" />
+			<index name="pk_note" unique="PRIMARY_KEY" >
+				<column name="NoteID" />
+				<column name="taskID" />
+			</index>
+			<index name="unq_taskID" unique="UNIQUE_INDEX" >
+				<column name="taskID" />
+			</index>
+		</table>
+		<table name="Priorities" prior="entity" >
+			<column name="PriorityID" type="INT" jt="4" mandatory="y" />
+			<column name="PriorityName" type="VARCHAR" length="20" jt="12" />
+			<index name="pk_priorities" unique="PRIMARY_KEY" >
+				<column name="PriorityID" />
+			</index>
+			<fk name="fk_priorities_tasks" virtual="y" to_schema="Task Management.INSTANCE" to_table="Tasks" type="Identifying" mandatory="y" cardinality="OneMore" range_from="0" range_to="0" >
+				<fk_column name="PriorityID" pk="PriorityID" />
+			</fk>
+		</table>
+		<table name="Reminders" prior="ReminderID" >
+			<column name="ReminderID" type="INT" jt="4" mandatory="y" />
+			<column name="ReminderDateTime" type="DATETIME" jt="93" />
+			<column name="TaskID" type="INT" jt="4" mandatory="y" />
+			<index name="pk_reminders" unique="PRIMARY_KEY" >
+				<column name="ReminderID" />
+			</index>
+			<fk name="fk_reminders_tasks" virtual="y" to_schema="Task Management.INSTANCE" to_table="Tasks" type="NonIdentifying" mandatory="n" cardinality="ZeroMore" range_from="0" range_to="0" >
+				<fk_column name="TaskID" pk="taskID" />
+			</fk>
+		</table>
+		<table name="Tasks" prior="entity" >
+			<column name="taskID" type="INT" jt="4" mandatory="y" />
+			<column name="PriorityID" type="INT" jt="4" mandatory="y" />
+			<column name="CategoryID" type="INT" jt="4" mandatory="y" />
+			<column name="TaskName" type="VARCHAR" length="100" jt="12" mandatory="y" />
+			<column name="TaskDescription" type="VARCHAR" length="100" jt="12" />
+			<column name="TaskDueDate" type="DATETIME" jt="93" />
+			<column name="InsertDate" type="DATETIME" jt="93" mandatory="y" >
+				<defo><![CDATA[systimestamp]]></defo>
+			</column>
+			<index name="unq_CategoryID" unique="UNIQUE_INDEX" >
+				<column name="CategoryID" />
+			</index>
+			<index name="unq_PriorityID" unique="UNIQUE_INDEX" >
+				<column name="PriorityID" />
+			</index>
+			<fk name="fk_tasks_note" virtual="y" to_schema="Task Management.INSTANCE" to_table="Note" type="NonIdentifying" mandatory="n" cardinality="ZeroMore" range_from="0" range_to="0" >
+				<fk_column name="taskID" pk="taskID" />
+			</fk>
+		</table>
+	</schema>
+	<layout name="Default Layout" id="Layout-65f" show_page_borders="y" show_relation="columns" >
+		<comment><![CDATA[Task Management]]></comment>
+		<entity schema="Task Management.INSTANCE" name="Categories" color="C1D8EE" x="352" y="304" />
+		<entity schema="Task Management.INSTANCE" name="Note" color="BED3F4" x="400" y="80" />
+		<entity schema="Task Management.INSTANCE" name="Priorities" color="C1D8EE" x="352" y="400" />
+		<entity schema="Task Management.INSTANCE" name="Reminders" color="C1D8EE" x="352" y="512" />
+		<entity schema="Task Management.INSTANCE" name="Tasks" color="BED3F4" x="48" y="48" />
+	</layout>
+</project>
