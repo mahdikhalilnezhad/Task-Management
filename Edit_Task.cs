@@ -11,32 +11,36 @@ using System.Windows.Forms;
 
 namespace Task_Management
 {
-    public partial class f_add_task : Form
+    public partial class Edit_Task : Form
     {
-        public f_add_task()
+        public Edit_Task()
         {
             InitializeComponent();
-            this.FormBorderStyle = FormBorderStyle.FixedSingle;
         }
+
 
 
         SqlDataAdapter ad = new SqlDataAdapter();
         SqlConnection conn = new SqlConnection();
         DataSet ds = new DataSet();
 
-        private void f_add_task_Load(object sender, EventArgs e)
+
+
+        private void Edit_Task_Load(object sender, EventArgs e)
         {
             conn.ConnectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;" +
-        "AttachDbFilename=\"C:\\Users\\Mahdi Khalil Nejad\\source\\repos\\Task Management\\TM Database.mdf\";" +
-        "Integrated Security=True";
+"AttachDbFilename=\"C:\\Users\\Mahdi Khalil Nejad\\source\\repos\\Task Management\\TM Database.mdf\";" +
+"Integrated Security=True";
             conn.Open();
 
-            SqlCommand cmd = new SqlCommand("SELECT CategoryID, CategoryName FROM dbo.Categories", conn);
+
+            SqlCommand cmd = new SqlCommand("SELECT TaskName FROM dbo.Tasks", conn);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();
             da.Fill(dt);
-            cmb_category.DataSource = dt;
-            cmb_category.DisplayMember = "CategoryName";
+            cmbTaskName.DataSource = dt;
+            cmbTaskName.DisplayMember = "TaskName";
+
 
             SqlCommand cmd2 = new SqlCommand("SELECT PriorityName FROM dbo.Priorities", conn);
             SqlDataAdapter da2 = new SqlDataAdapter(cmd2);
@@ -45,11 +49,13 @@ namespace Task_Management
             cmb_priority.DataSource = dt2;
             cmb_priority.DisplayMember = "PriorityName";
 
-
+            SqlCommand cmd3 = new SqlCommand("SELECT CategoryName FROM dbo.Categories", conn);
+            SqlDataAdapter da3 = new SqlDataAdapter(cmd3);
+            DataTable dt3 = new DataTable();
+            da3.Fill(dt3);
+            cmb_category.DataSource = dt3;
+            cmb_category.DisplayMember = "CategoryName";
         }
-
-
-
 
         private void btn_submit_Click(object sender, EventArgs e)
         {
@@ -65,8 +71,8 @@ namespace Task_Management
             else if (cmb_category.Text == "Home") { category = 4; }
             else { category = 5; }
 
-            
-            if (string.IsNullOrEmpty(txt_task_name.Text) ||
+
+            if (string.IsNullOrEmpty(cmbTaskName.Text) ||
                 string.IsNullOrEmpty(txt_description.Text) ||
                 string.IsNullOrEmpty(dateTimePicker1.Text) ||
                 string.IsNullOrEmpty(cmb_category.Text) ||
@@ -78,11 +84,11 @@ namespace Task_Management
                 return;
             }
 
-            using (SqlCommand command = 
+            using (SqlCommand command =
                 new SqlCommand("exec InsertTask" +
                 " @TaskName, @TaskDescription, @TaskDueDate, @PriorityID, @CategoryID, @Steps", conn))
             {
-                command.Parameters.AddWithValue("@TaskName", txt_task_name.Text);
+                command.Parameters.AddWithValue("@TaskName", cmbTaskName.Text);
                 command.Parameters.AddWithValue("@TaskDescription", txt_description.Text);
                 command.Parameters.AddWithValue("@TaskDueDate", dateTimePicker1.Value.Date);
                 command.Parameters.AddWithValue("@PriorityID", priority);
@@ -90,19 +96,13 @@ namespace Task_Management
                 command.Parameters.AddWithValue("@Steps", int.Parse(txtSteps.Text));
                 command.ExecuteNonQuery();
             };
-            using (SqlCommand command =
-                new SqlCommand ("exec InsertNote @NoteText", conn))
-            {
-                command.Parameters.AddWithValue("@NoteText", txtNote.Text);
-                command.ExecuteNonQuery ();
-            }
             this.Close();
+
         }
 
         private void btn_cancel_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-
     }
 }

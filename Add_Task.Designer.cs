@@ -42,6 +42,8 @@
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.txtNote = new System.Windows.Forms.TextBox();
             this.lblNote = new System.Windows.Forms.Label();
+            this.lblSteps = new System.Windows.Forms.Label();
+            this.txtSteps = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // btn_submit
@@ -163,11 +165,30 @@
             this.lblNote.TabIndex = 16;
             this.lblNote.Text = "Note";
             // 
+            // lblSteps
+            // 
+            this.lblSteps.AutoSize = true;
+            this.lblSteps.Location = new System.Drawing.Point(8, 214);
+            this.lblSteps.Name = "lblSteps";
+            this.lblSteps.Size = new System.Drawing.Size(34, 13);
+            this.lblSteps.TabIndex = 17;
+            this.lblSteps.Text = "Steps";
+            // 
+            // txtSteps
+            // 
+            this.txtSteps.Location = new System.Drawing.Point(52, 207);
+            this.txtSteps.Name = "txtSteps";
+            this.txtSteps.Size = new System.Drawing.Size(54, 20);
+            this.txtSteps.TabIndex = 18;
+            this.txtSteps.Text = "1";
+            // 
             // f_add_task
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(416, 270);
+            this.Controls.Add(this.txtSteps);
+            this.Controls.Add(this.lblSteps);
             this.Controls.Add(this.lblNote);
             this.Controls.Add(this.txtNote);
             this.Controls.Add(this.dateTimePicker1);
@@ -208,5 +229,7 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.TextBox txtNote;
         private System.Windows.Forms.Label lblNote;
+        private System.Windows.Forms.Label lblSteps;
+        private System.Windows.Forms.TextBox txtSteps;
     }
 }

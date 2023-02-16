@@ -69,6 +69,12 @@
     <Compile Include="Add_Task.Designer.cs">
       <DependentUpon>Add_Task.cs</DependentUpon>
     </Compile>
+    <Compile Include="Edit_Task.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Edit_Task.Designer.cs">
+      <DependentUpon>Edit_Task.cs</DependentUpon>
+    </Compile>
     <Compile Include="Main_Page.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -79,6 +85,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Add_Task.resx">
       <DependentUpon>Add_Task.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Edit_Task.resx">
+      <DependentUpon>Edit_Task.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Main_Page.resx">
       <DependentUpon>Main_Page.cs</DependentUpon>

@@ -155,25 +155,13 @@ namespace Task_Management
 
         private void btn_today_task_Click(object sender, EventArgs e)
         {
-            //string connectionString = "Data Source=(local);Initial Catalog=TaskManagement;Integrated Security=True";
-            //using (SqlConnection connection = new SqlConnection(connectionString))
-            //{
-            //    connection.Open();
-            //    string today = DateTime.Today.ToString("yyyy-MM-dd");
-            //    string query = "SELECT TaskID, TaskName, StartDate, EndDate, CategoryID, Priority FROM Tasks WHERE StartDate = @today";
-            //    using (SqlCommand command = new SqlCommand(query, connection))
-            //    {
-            //        command.Parameters.AddWithValue("@today", today);
-            //        using (SqlDataAdapter adapter = new SqlDataAdapter(command))
-            //        {
-            //            DataTable dataTable = new DataTable();
-            //            adapter.Fill(dataTable);
-            //            taskDataGridView.DataSource = dataTable;
-            //        }
-            //    }
-            //}
             fillgrid("exec GetTodaysTasks");
+        }
 
+        private void btnEditTask_Click(object sender, EventArgs e)
+        {
+            Edit_Task edit_Task = new Edit_Task();
+            edit_Task.Show();
         }
     }
 }

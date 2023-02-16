@@ -33,6 +33,7 @@
             this.btn_report = new System.Windows.Forms.Button();
             this.btn_today_task = new System.Windows.Forms.Button();
             this.dataGridView_mainPage = new System.Windows.Forms.DataGridView();
+            this.btnEditTask = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_mainPage)).BeginInit();
             this.SuspendLayout();
             // 
@@ -58,7 +59,7 @@
             // 
             // btn_report
             // 
-            this.btn_report.Location = new System.Drawing.Point(12, 99);
+            this.btn_report.Location = new System.Drawing.Point(12, 402);
             this.btn_report.Name = "btn_report";
             this.btn_report.Size = new System.Drawing.Size(75, 23);
             this.btn_report.TabIndex = 2;
@@ -83,15 +84,25 @@
             this.dataGridView_mainPage.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_mainPage.Location = new System.Drawing.Point(93, 12);
             this.dataGridView_mainPage.Name = "dataGridView_mainPage";
-            this.dataGridView_mainPage.ReadOnly = true;
             this.dataGridView_mainPage.Size = new System.Drawing.Size(670, 413);
             this.dataGridView_mainPage.TabIndex = 4;
+            // 
+            // btnEditTask
+            // 
+            this.btnEditTask.Location = new System.Drawing.Point(12, 99);
+            this.btnEditTask.Name = "btnEditTask";
+            this.btnEditTask.Size = new System.Drawing.Size(75, 23);
+            this.btnEditTask.TabIndex = 5;
+            this.btnEditTask.Text = "Edit Task";
+            this.btnEditTask.UseVisualStyleBackColor = true;
+            this.btnEditTask.Click += new System.EventHandler(this.btnEditTask_Click);
             // 
             // Main_Page
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(773, 437);
+            this.Controls.Add(this.btnEditTask);
             this.Controls.Add(this.dataGridView_mainPage);
             this.Controls.Add(this.btn_today_task);
             this.Controls.Add(this.btn_report);
@@ -113,6 +124,7 @@
         private System.Windows.Forms.Button btn_report;
         private System.Windows.Forms.Button btn_today_task;
         private System.Windows.Forms.DataGridView dataGridView_mainPage;
+        private System.Windows.Forms.Button btnEditTask;
     }
 }
 
