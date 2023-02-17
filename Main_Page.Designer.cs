@@ -84,7 +84,8 @@
             this.dataGridView_mainPage.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_mainPage.Location = new System.Drawing.Point(93, 12);
             this.dataGridView_mainPage.Name = "dataGridView_mainPage";
-            this.dataGridView_mainPage.Size = new System.Drawing.Size(670, 413);
+            this.dataGridView_mainPage.ReadOnly = true;
+            this.dataGridView_mainPage.Size = new System.Drawing.Size(879, 413);
             this.dataGridView_mainPage.TabIndex = 4;
             // 
             // btnEditTask
@@ -101,7 +102,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(773, 437);
+            this.ClientSize = new System.Drawing.Size(984, 437);
             this.Controls.Add(this.btnEditTask);
             this.Controls.Add(this.dataGridView_mainPage);
             this.Controls.Add(this.btn_today_task);

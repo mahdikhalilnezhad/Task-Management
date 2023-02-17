@@ -80,7 +80,8 @@ namespace Task_Management
 
             using (SqlCommand command = 
                 new SqlCommand("exec InsertTask" +
-                " @TaskName, @TaskDescription, @TaskDueDate, @PriorityID, @CategoryID, @Steps", conn))
+                " @TaskName, @TaskDescription, @TaskDueDate," +
+                " @PriorityID, @CategoryID, @Steps, @Days", conn))
             {
                 command.Parameters.AddWithValue("@TaskName", txt_task_name.Text);
                 command.Parameters.AddWithValue("@TaskDescription", txt_description.Text);
@@ -88,6 +89,7 @@ namespace Task_Management
                 command.Parameters.AddWithValue("@PriorityID", priority);
                 command.Parameters.AddWithValue("@CategoryID", category);
                 command.Parameters.AddWithValue("@Steps", int.Parse(txtSteps.Text));
+                command.Parameters.AddWithValue("@Days", txtDays.Text);
                 command.ExecuteNonQuery();
             };
             using (SqlCommand command =
@@ -104,5 +106,16 @@ namespace Task_Management
             this.Close();
         }
 
+        private void txtDays_TextChanged(object sender, EventArgs e)
+        {
+            DateTime date = dateTimePicker1.Value; // current date and time
+            int daysToAdd = int.Parse(txtDays.Text); // number of days to add
+            DateTime newDate = date.AddDays(daysToAdd); // add days to the current date ;
+
+            if (newDate != date)
+            {
+                lblDeadLineShow.Text = newDate.ToString();
+            }
+        }
     }
 }

@@ -51,6 +51,7 @@
 			<column name="InsertDate" type="DATETIME" jt="93" mandatory="y" >
 				<defo><![CDATA[systimestamp]]></defo>
 			</column>
+			<column name="Steps" type="INT" jt="4" mandatory="y" />
 			<index name="unq_CategoryID" unique="UNIQUE_INDEX" >
 				<column name="CategoryID" />
 			</index>

@@ -34,12 +34,28 @@ namespace Task_Management
             conn.Open();
 
 
-            SqlCommand cmd = new SqlCommand("SELECT TaskName FROM dbo.Tasks", conn);
+            SqlCommand cmd = new SqlCommand("SELECT TaskID, TaskName FROM dbo.Tasks", conn);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();
             da.Fill(dt);
             cmbTaskName.DataSource = dt;
             cmbTaskName.DisplayMember = "TaskName";
+
+            string comdString = "SELECT TaskID FROM dbo.Tasks WHERE TaskName = " 
+                                + "'" + cmbTaskName.Text + "'".ToString();
+            SqlCommand cmd4 = new SqlCommand(comdString, conn);
+            SqlDataAdapter da4 = new SqlDataAdapter(cmd4);
+            DataTable dt4 = new DataTable();
+            da4.Fill(dt4);
+            DataRow dr4 = dt4.Rows[0];
+            lblTaskIdShow.Text = dr4["TaskId"].ToString();
+            //if (dt.Rows.Count > 0)
+            //{
+            //    // get the first row of data
+            //    DataRow dr = dt.Rows[0];
+            //    // set the label text to the value of the "TaskName" column
+            //    lblTaskName.Text = dr["TaskID"].ToString();
+            //}
 
 
             SqlCommand cmd2 = new SqlCommand("SELECT PriorityName FROM dbo.Priorities", conn);
@@ -85,8 +101,9 @@ namespace Task_Management
             }
 
             using (SqlCommand command =
-                new SqlCommand("exec InsertTask" +
-                " @TaskName, @TaskDescription, @TaskDueDate, @PriorityID, @CategoryID, @Steps", conn))
+                new SqlCommand("exec UpdateTask" +
+                " @TaskId, @TaskName, @TaskDescription," +
+                " @TaskDueDate, @PriorityID, @CategoryID, @Steps, @Days", conn))
             {
                 command.Parameters.AddWithValue("@TaskName", cmbTaskName.Text);
                 command.Parameters.AddWithValue("@TaskDescription", txt_description.Text);
@@ -94,6 +111,8 @@ namespace Task_Management
                 command.Parameters.AddWithValue("@PriorityID", priority);
                 command.Parameters.AddWithValue("@CategoryID", category);
                 command.Parameters.AddWithValue("@Steps", int.Parse(txtSteps.Text));
+                command.Parameters.AddWithValue("@TaskId", int.Parse(lblTaskIdShow.Text));
+                command.Parameters.AddWithValue("@Days", int.Parse(txtDays.Text));
                 command.ExecuteNonQuery();
             };
             this.Close();
@@ -103,6 +122,34 @@ namespace Task_Management
         private void btn_cancel_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void cmbTaskName_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            string comdString = "SELECT TaskID FROM dbo.Tasks WHERE TaskName = "
+                                + "'" + cmbTaskName.Text + "'".ToString();
+            SqlCommand cmd5 = new SqlCommand(comdString, conn);
+            SqlDataAdapter da4 = new SqlDataAdapter(cmd5);
+            DataTable dt5 = new DataTable();
+            da4.Fill(dt5);
+            if (dt5.Rows.Count > 0)
+            {
+                DataRow dr5 = dt5.Rows[0];
+                lblTaskIdShow.Text = dr5["TaskId"].ToString();
+            }
+        }
+
+        private void txtDays_TextChanged(object sender, EventArgs e)
+        {
+            DateTime date = dateTimePicker1.Value; // current date and time
+            int daysToAdd = int.Parse(txtDays.Text); // number of days to add
+            DateTime newDate = date.AddDays(daysToAdd); // add days to the current date ;
+
+            if (newDate != date)
+            {
+                lblDeadLineShow.Text = newDate.ToString();
+            }
         }
     }
 }

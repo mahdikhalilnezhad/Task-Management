@@ -44,6 +44,10 @@
             this.lblNote = new System.Windows.Forms.Label();
             this.lblSteps = new System.Windows.Forms.Label();
             this.txtSteps = new System.Windows.Forms.TextBox();
+            this.txtDays = new System.Windows.Forms.TextBox();
+            this.lblDays = new System.Windows.Forms.Label();
+            this.lblDeadLine = new System.Windows.Forms.Label();
+            this.lblDeadLineShow = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btn_submit
@@ -159,7 +163,7 @@
             // lblNote
             // 
             this.lblNote.AutoSize = true;
-            this.lblNote.Location = new System.Drawing.Point(12, 147);
+            this.lblNote.Location = new System.Drawing.Point(153, 147);
             this.lblNote.Name = "lblNote";
             this.lblNote.Size = new System.Drawing.Size(30, 13);
             this.lblNote.TabIndex = 16;
@@ -168,7 +172,7 @@
             // lblSteps
             // 
             this.lblSteps.AutoSize = true;
-            this.lblSteps.Location = new System.Drawing.Point(8, 214);
+            this.lblSteps.Location = new System.Drawing.Point(12, 147);
             this.lblSteps.Name = "lblSteps";
             this.lblSteps.Size = new System.Drawing.Size(34, 13);
             this.lblSteps.TabIndex = 17;
@@ -176,17 +180,55 @@
             // 
             // txtSteps
             // 
-            this.txtSteps.Location = new System.Drawing.Point(52, 207);
+            this.txtSteps.Location = new System.Drawing.Point(56, 144);
             this.txtSteps.Name = "txtSteps";
             this.txtSteps.Size = new System.Drawing.Size(54, 20);
             this.txtSteps.TabIndex = 18;
             this.txtSteps.Text = "1";
+            // 
+            // txtDays
+            // 
+            this.txtDays.Location = new System.Drawing.Point(56, 175);
+            this.txtDays.Name = "txtDays";
+            this.txtDays.Size = new System.Drawing.Size(54, 20);
+            this.txtDays.TabIndex = 20;
+            this.txtDays.TextChanged += new System.EventHandler(this.txtDays_TextChanged);
+            // 
+            // lblDays
+            // 
+            this.lblDays.AutoSize = true;
+            this.lblDays.Location = new System.Drawing.Point(12, 178);
+            this.lblDays.Name = "lblDays";
+            this.lblDays.Size = new System.Drawing.Size(31, 13);
+            this.lblDays.TabIndex = 19;
+            this.lblDays.Text = "Days";
+            // 
+            // lblDeadLine
+            // 
+            this.lblDeadLine.AutoSize = true;
+            this.lblDeadLine.Location = new System.Drawing.Point(12, 214);
+            this.lblDeadLine.Name = "lblDeadLine";
+            this.lblDeadLine.Size = new System.Drawing.Size(56, 13);
+            this.lblDeadLine.TabIndex = 21;
+            this.lblDeadLine.Text = "Dead Line";
+            // 
+            // lblDeadLineShow
+            // 
+            this.lblDeadLineShow.AutoSize = true;
+            this.lblDeadLineShow.Location = new System.Drawing.Point(74, 214);
+            this.lblDeadLineShow.Name = "lblDeadLineShow";
+            this.lblDeadLineShow.Size = new System.Drawing.Size(0, 13);
+            this.lblDeadLineShow.TabIndex = 22;
             // 
             // f_add_task
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(416, 270);
+            this.Controls.Add(this.lblDeadLineShow);
+            this.Controls.Add(this.lblDeadLine);
+            this.Controls.Add(this.txtDays);
+            this.Controls.Add(this.lblDays);
             this.Controls.Add(this.txtSteps);
             this.Controls.Add(this.lblSteps);
             this.Controls.Add(this.lblNote);
@@ -231,5 +273,9 @@
         private System.Windows.Forms.Label lblNote;
         private System.Windows.Forms.Label lblSteps;
         private System.Windows.Forms.TextBox txtSteps;
+        private System.Windows.Forms.TextBox txtDays;
+        private System.Windows.Forms.Label lblDays;
+        private System.Windows.Forms.Label lblDeadLine;
+        private System.Windows.Forms.Label lblDeadLineShow;
     }
 }
